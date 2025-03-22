@@ -28,6 +28,7 @@
             align-items: center;
             background-color: #2c2c2c;
             padding: 5px 10px;
+            animation: fadeIn 0.5s ease;
         }
 
         .start-menu {
@@ -39,6 +40,7 @@
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             display: none;
+            animation: slideUp 0.3s ease;
         }
 
         .start-menu ul {
@@ -50,6 +52,7 @@
         .start-menu li {
             padding: 5px 10px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
         .start-menu li:hover {
@@ -60,6 +63,7 @@
             width: 32px;
             height: 32px;
             margin-right: 10px;
+            animation: bounceIn 0.5s ease;
         }
 
         .app-name {
@@ -71,10 +75,47 @@
             text-decoration: none;
             color: #fff;
             padding: 5px 10px;
+            transition: background-color 0.3s ease;
         }
 
         .website-link:hover {
             background-color: #3c3c3c;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            0% {
+                transform: translateY(100%);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.1);
+                opacity: 0;
+            }
+
+            60% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
     </style>
 </head>
@@ -95,22 +136,22 @@
 
         <div class="start-menu">
             <ul>
-                <li onclick="openApp('Spotify')">
-                    <img src="spotify.png" alt="Spotify" class="app-icon">
-                    <span class="app-name">Spotify</span>
-                </li>
-                <li onclick="openApp('File Explorer')">
-                    <img src="file-explorer.png" alt="File Explorer" class="app-icon">
-                    <span class="app-name">File Explorer</span>
-                </li>
-                <li onclick="openApp('Notion')">
-                    <img src="notion.png" alt="Notion" class="app-icon">
-                    <span class="app-name">Notion</span>
-                </li>
-                <li onclick="openApp('Thunderbird')">
-                    <img src="thunderbird.png" alt="Thunderbird" class="app-icon">
-                    <span class="app-name">Thunderbird</span>
-                </li>
+                        <li onclick="openApp('Spotify')">
+                            <img src="spotify.png" alt="Spotify" class="app-icon">
+                            <span class="app-name">Spotify</span>
+                        </li>
+                        <li onclick="openApp('File Explorer')">
+                            <img src="file-explorer.png" alt="File Explorer" class="app-icon">
+                            <span class="app-name">File Explorer</span>
+                        </li>
+                        <li onclick="openApp('Notion')">
+                            <img src="notion.png" alt="Notion" class="app-icon">
+                            <span class="app-name">Notion</span>
+                        </li>
+                        <li onclick="openApp('Thunderbird')">
+                            <img src="thunderbird.png" alt="Thunderbird" class="app-icon">
+                            <span class="app-name">Thunderbird</span>
+                        </li>
                         <li><a href="https://www.youtube.com" target="_blank" class="website-link">
                                 <img src="youtube.png" alt="YouTube" class="app-icon">
                                 <span class="app-name">YouTube</span>
@@ -141,6 +182,15 @@
                                 alert(`Opening ${appName}...`);
                                 // Add your app opening logic here
                             }
+
+                            // Add smooth scrolling to the start menu
+                            document.querySelectorAll('.website-link').forEach(link => {
+                                link.addEventListener('click', (event) => {
+                                    event.preventDefault();
+                                    const targetUrl = event.target.closest('a').href;
+                                    window.open(targetUrl, '_blank');
+                                });
+                            });
                         </script>
                         </body>
                         
