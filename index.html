@@ -6,116 +6,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Windows 11 Desktop</title>
     <style>
-        /* CSS styles for the desktop */
         body {
+            font-family: Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #1c1c1c;
-            color: #fff;
         }
 
         .desktop {
-            display: flex;
-            flex-direction: column;
+            width: 100%;
             height: 100vh;
-            overflow: hidden;
+            position: relative;
+            background-image: url('https://wallpapercave.com/wp/wp4056416.jpg');
+            background-size: cover;
         }
 
         .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background-color: #333;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            background-color: #2c2c2c;
-            padding: 5px 10px;
-            animation: fadeIn 0.5s ease;
+            padding: 0 10px;
         }
 
         .start-menu {
             position: absolute;
-            bottom: 50px;
-            left: 10px;
-            background-color: #2c2c2c;
+            bottom: 40px;
+            left: 0;
+            width: 200px;
+            height: 300px;
+            background-color: #fff;
+            border: 1px solid #ddd;
             padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             display: none;
-            animation: slideUp 0.3s ease;
         }
 
         .start-menu ul {
-            list-style-type: none;
+            list-style: none;
             padding: 0;
             margin: 0;
         }
 
         .start-menu li {
-            padding: 5px 10px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
         }
 
         .start-menu li:hover {
-            background-color: #3c3c3c;
+            background-color: #f0f0f0;
         }
 
-        .app-icon {
-            width: 32px;
-            height: 32px;
+        .taskbar-button {
+            width: 40px;
+            height: 40px;
             margin-right: 10px;
-            animation: bounceIn 0.5s ease;
-        }
-
-        .app-name {
-            font-size: 14px;
-        }
-
-        .website-link {
-            display: block;
-            text-decoration: none;
+            background-color: #333;
             color: #fff;
-            padding: 5px 10px;
-            transition: background-color 0.3s ease;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
 
-        .website-link:hover {
-            background-color: #3c3c3c;
+        .taskbar-button:hover {
+            background-color: #444;
         }
 
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 1;
-            }
+        .window {
+            position: absolute;
+            width: 500px;
+            height: 300px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            display: none;
         }
 
-        @keyframes slideUp {
-            0% {
-                transform: translateY(100%);
-            }
-
-            100% {
-                transform: translateY(0);
-            }
+        .window-header {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
         }
 
-        @keyframes bounceIn {
-            0% {
-                transform: scale(0.1);
-                opacity: 0;
-            }
-
-            60% {
-                transform: scale(1.2);
-                opacity: 1;
-            }
-
-            100% {
-                transform: scale(1);
-            }
+        .window-content {
+            padding: 10px;
         }
     </style>
 </head>
@@ -123,75 +100,103 @@
 <body>
     <div class="desktop">
         <div class="taskbar">
-            <div class="start-button" onclick="toggleStartMenu()">
-                <img src="start-button.png" alt="Start" class="app-icon">
-            </div>
-            <div class="app-icons">
-                <img src="spotify.png" alt="Spotify" class="app-icon" onclick="openApp('Spotify')">
-                <img src="file-explorer.png" alt="File Explorer" class="app-icon" onclick="openApp('File Explorer')">
-                <img src="notion.png" alt="Notion" class="app-icon" onclick="openApp('Notion')">
-                <img src="thunderbird.png" alt="Thunderbird" class="app-icon" onclick="openApp('Thunderbird')">
-            </div>
+            <button class="taskbar-button" id="start-button">Start</button>
+            <button class="taskbar-button" id="spotify-button">Spotify</button>
+            <button class="taskbar-button" id="file-explorer-button">File Explorer</button>
+            <button class="taskbar-button" id="notion-button">Notion</button>
+            <button class="taskbar-button" id="thunderbird-button">Thunderbird</button>
         </div>
-
-        <div class="start-menu">
+        <div class="start-menu" id="start-menu">
             <ul>
-                        <li onclick="openApp('Spotify')">
-                            <img src="spotify.png" alt="Spotify" class="app-icon">
-                            <span class="app-name">Spotify</span>
-                        </li>
-                        <li onclick="openApp('File Explorer')">
-                            <img src="file-explorer.png" alt="File Explorer" class="app-icon">
-                            <span class="app-name">File Explorer</span>
-                        </li>
-                        <li onclick="openApp('Notion')">
-                            <img src="notion.png" alt="Notion" class="app-icon">
-                            <span class="app-name">Notion</span>
-                        </li>
-                        <li onclick="openApp('Thunderbird')">
-                            <img src="thunderbird.png" alt="Thunderbird" class="app-icon">
-                            <span class="app-name">Thunderbird</span>
-                        </li>
-                        <li><a href="https://www.youtube.com" target="_blank" class="website-link">
-                                <img src="youtube.png" alt="YouTube" class="app-icon">
-                                <span class="app-name">YouTube</span>
-                            </a></li>
-                        <li><a href="https://drive.google.com" target="_blank" class="website-link">
-                                <img src="google-drive.png" alt="Google Drive" class="app-icon">
-                                <span class="app-name">Google Drive</span>
-                            </a></li>
-                        <li><a href="https://www.instagram.com" target="_blank" class="website-link">
-                                <img src="instagram.png" alt="Instagram" class="app-icon">
-                                <span class="app-name">Instagram</span>
-                            </a></li>
-                        <li><a href="https://www.roblox.com" target="_blank" class="website-link">
-                                <img src="roblox.png" alt="Roblox" class="app-icon">
-                                <span class="app-name">Roblox</span>
-                            </a></li>
-                        </ul>
+                <li><a href="#" id="youtube-link">Youtube</a></li>
+                <li><a href="#" id="google-drive-link">Google Drive</a></li>
+                <li><a href="#" id="instagram-link">Instagram</a></li>
+                <li><a href="#" id="roblox-link">Roblox</a></li>
+                <li><button id="spotify-app-button">Spotify</button></li>
+                <li><button id="file-explorer-app-button">File Explorer</button></li>
+                <li><button id="notion-app-button">Notion</button></li>
+                <li><button id="thunderbird-app-button">Thunderbird</button></li>
+            </ul>
+        </div>
+        <div class="window" id="spotify-window">
+            <div class="window-header">
+                <h2>Spotify</h2>
+            </div>
+            <div class="window-content">
+                <iframe src="https://open.spotify.com" width="100%" height="100%"></iframe>
+                    </div>
+                    <div class="window" id="file-explorer-window">
+                        <div class="window-header">
+                            <h2>File Explorer</h2>
                         </div>
+                        <div class="window-content">
+                            <iframe src="file:///C:/Users/YourUsername/Desktop" width="100%" height="100%"></iframe>
                         </div>
-                        
-                        <script>
-                            function toggleStartMenu() {
-                                const startMenu = document.querySelector('.start-menu');
-                                startMenu.style.display = startMenu.style.display === 'none' ? 'block' : 'none';
+                    </div>
+                    <div class="window" id="notion-window">
+                        <div class="window-header">
+                            <h2>Notion</h2>
+                        </div>
+                        <div class="window-content">
+                            <iframe src="https://www.notion.so" width="100%" height="100%"></iframe>
+                        </div>
+                    </div>
+                    <div class="window" id="thunderbird-window">
+                        <div class="window-header">
+                            <h2>Thunderbird</h2>
+                        </div>
+                        <div class="window-content">
+                            <iframe src="https://www.thunderbird.net" width="100%" height="100%"></iframe>
+                        </div>
+                    </div>
+                    </div>
+                    
+                    <script>
+                        document.getElementById('start-button').addEventListener('click', function () {
+                            var startMenu = document.getElementById('start-menu');
+                            if (startMenu.style.display === 'block') {
+                                startMenu.style.display = 'none';
+                            } else {
+                                startMenu.style.display = 'block';
                             }
+                        });
 
-                            function openApp(appName) {
-                                alert(`Opening ${appName}...`);
-                                // Add your app opening logic here
-                            }
+                        document.getElementById('spotify-app-button').addEventListener('click', function () {
+                            var spotifyWindow = document.getElementById('spotify-window');
+                            spotifyWindow.style.display = 'block';
+                        });
 
-                            // Add smooth scrolling to the start menu
-                            document.querySelectorAll('.website-link').forEach(link => {
-                                link.addEventListener('click', (event) => {
-                                    event.preventDefault();
-                                    const targetUrl = event.target.closest('a').href;
-                                    window.open(targetUrl, '_blank');
-                                });
-                            });
-                        </script>
-                        </body>
-                        
-                        </html>
+                        document.getElementById('file-explorer-app-button').addEventListener('click', function () {
+                            var fileExplorerWindow = document.getElementById('file-explorer-window');
+                            fileExplorerWindow.style.display = 'block';
+                        });
+
+                        document.getElementById('notion-app-button').addEventListener('click', function () {
+                            var notionWindow = document.getElementById('notion-window');
+                            notionWindow.style.display = 'block';
+                        });
+
+                        document.getElementById('thunderbird-app-button').addEventListener('click', function () {
+                            var thunderbirdWindow = document.getElementById('thunderbird-window');
+                            thunderbirdWindow.style.display = 'block';
+                        });
+
+                        document.getElementById('youtube-link').addEventListener('click', function () {
+                            window.open('https://www.youtube.com', '_blank');
+                        });
+
+                        document.getElementById('google-drive-link').addEventListener('click', function () {
+                            window.open('https://drive.google.com', '_blank');
+                        });
+
+                        document.getElementById('instagram-link').addEventListener('click', function () {
+                            window.open('https://www.instagram.com', '_blank');
+                        });
+
+                        document.getElementById('roblox-link').addEventListener('click', function () {
+                            window.open('https://www.roblox.com', '_blank');
+                        });
+                    </script>
+                    </body>
+                    
+                    </html>
