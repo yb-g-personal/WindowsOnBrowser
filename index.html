@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows 11 Desktop</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="desktop">
+        <div class="taskbar">
+            <div class="start-button">
+                <img src="start-button.png" alt="Start" onclick="toggleStartMenu()">
+            </div>
+            <div class="taskbar-icons">
+                <div class="icon" onclick="openApp('spotify')">
+                    <img src="spotify.png" alt="Spotify">
+                    <span>Spotify</span>
+                </div>
+                <div class="icon" onclick="openApp('file-explorer')">
+                    <img src="file-explorer.png" alt="File Explorer">
+                    <span>File Explorer</span>
+                </div>
+                <div class="icon" onclick="openApp('notion')">
+                    <img src="notion.png" alt="Notion">
+                    <span>Notion</span>
+                </div>
+                <div class="icon" onclick="openApp('thunderbird')">
+                    <img src="thunderbird.png" alt="Thunderbird">
+                    <span>Thunderbird</span>
+                </div>
+                <div class="icon" onclick="openWebsite('https://www.youtube.com')">
+                    <img src="youtube.png" alt="YouTube">
+                    <span>YouTube</span>
+                </div>
+                <div class="icon" onclick="openWebsite('https://drive.google.com')">
+                    <img src="google-drive.png" alt="Google Drive">
+                    <span>Google Drive</span>
+                </div>
+                <div class="icon" onclick="openWebsite('https://www.instagram.com')">
+                    <img src="instagram.png" alt="Instagram">
+                    <span>Instagram</span>
+                </div>
+                <div class="icon" onclick="openWebsite('https://www.roblox.com')">
+                    <img src="roblox.png" alt="Roblox">
+                    <span>Roblox</span>
+                </div>
+            </div>
+            <div class="system-tray">
+                <div class="icon">
+                    <i class="fas fa-wifi"></i>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-volume-up"></i>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-battery-full"></i>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+            </div>
+        </div>
+        <div class="start-menu" id="start-menu">
+            <div class="search-bar">
+                <input type="text" placeholder="Search">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="apps">
+                <div class="app-group">
+                    <h3>Pinned</h3>
+                    <div class="app" onclick="openApp('spotify')">
+                        <img src="spotify.png" alt="Spotify">
+                        <span>Spotify</span>
+                    </div>
+                    <div class="app" onclick="openApp('file-explorer')">
+                        <img src="file-explorer.png" alt="File Explorer">
+                        <span>File Explorer</span>
+                    </div>
+                    <div class="app" onclick="openApp('notion')">
+                        <img src="notion.png" alt="Notion">
+                        <span>Notion</span>
+                    </div>
+                    <div class="app" onclick="openApp('thunderbird')">
+                        <img src="thunderbird.png" alt="Thunderbird">        
+                    </div>
+        </div>
+        <div class="app-group">
+          <h3>Recommended</h3>
+          <div class="app" onclick="openWebsite('https://www.youtube.com')">
+            <img src="youtube.png" alt="YouTube">
+            <span>YouTube</span>
+          </div>
+          <div class="app" onclick="openWebsite('https://drive.google.com')">
+            <img src="google-drive.png" alt="Google Drive">
+            <span>Google Drive</span>
+          </div>
+          <div class="app" onclick="openWebsite('https://www.instagram.com')">
+            <img src="instagram.png" alt="Instagram">
+            <span>Instagram</span>
+          </div>
+          <div class="app" onclick="openWebsite('https://www.roblox.com')">
+            <img src="roblox.png" alt="Roblox">
+            <span>Roblox</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
